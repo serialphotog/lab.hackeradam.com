@@ -12,4 +12,4 @@ This is an idea that I've gotten through seeing a similar setup from others onli
 
 # About this Notebook
 
-This lab notebook is a simple [Hugo](https://gohugo.io/) site. The code is hosted on [Github](https://github.com/serialphotog/lab.hackeradam.com) and the changes are automatically deployed to the Google Cloud, similar to [how I do my main site](https://hackeradam.com/post/new-site-stack/). 
+This lab notebook is a simple [Hugo](https://gohugo.io/) site. The code is hosted on [Github](https://github.com/serialphotog/lab.hackeradam.com) and the changes are automatically deployed to Cloudflare Pages, similar to [how I do my main site](https://hackeradam.com/post/new-site-stack/). 
