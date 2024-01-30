@@ -5,7 +5,7 @@ theme = "etch"
 
 [params]
     description = "Adam Thompson's public lab notes."
-    copyright = "Copyright  2021, Adam Thompson."
+    copyright = "Copyright  2024, Adam Thompson."
     dark = "auto"
     highlight = "true"
 
