@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adam Thompson&#39;s public lab notes.">
+    
+    <link rel="shortcut icon" href="https://lab.hackeradam.com/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <title>Building a Homemade Spirit Box</title>
+</head>
+<body><header id="banner">
+    <h2><a href="https://lab.hackeradam.com/">Adam Thompson&#39;s Lab Notebook</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" title="posts">posts</a>
+            </li><li>
+                <a href="/about" title="about">about</a>
+            </li><li>
+                <a href="https://hackeradam.com" title="Main Site">Main Site</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Building a Homemade Spirit Box</h1>
+            <div>
+                <time>April 18, 2021</time>
+                </div>
+    </header><p>I am certainly no believer in the paranormal. My mother, on the other hand, is a different story. As such, she recently requested that I design and build a spirit box for her. Being that I am not one to turn down an opportunity to tinker on a new project, I decided to oblige.</p>
+<h1 id="what-the-hell-is-a-spirit-box">What the Hell is a Spirit Box?</h1>
+<p>The first quest I needed to answer in this project is what in the hell is a spirit box anyway?</p>
+<p>Well, as it turns out, a spirit box is simply an electronic device that quickly switches through FM radio stations. This results in a weird, white-noise like pattern that some believe the spirit world can utilize to communicate. I&rsquo;m not sure about that last bit, but the first part certainly doesn&rsquo;t sound too terribly difficult!</p>
+<h1 id="parts">Parts</h1>
+<ul>
+<li><a href="https://www.sparkfun.com/products/11083">SparkFun FM Tuner Breakout</a></li>
+<li><a href="https://www.sparkfun.com/products/11044">SparkFun Mono Audio Amplifier Breakout</a></li>
+<li><a href="https://www.sparkfun.com/products/11113">Arduino Pro Mini 328 5V</a></li>
+<li><a href="https://www.sparkfun.com/products/9151">0.5W Speaker</a></li>
+</ul>
+<h1 id="test-electronics-setup">Test Electronics Setup</h1>
+<p><img src="/blog/spiritBoxPrototype01.jpg" alt="The initial prototype of the spirit box electronics"></p>
+<p>To begin, I wired everything up to an Arduino Uno to do the basic prototyping. The setup is pretty straightforward, with the arduino controlling the FM tuner. The speed at which the Arduino scans through the channels is controlled via a potentiometer. Here is a brief video of it running to give you an idea of what a spirit box does:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/6YfjLhG39iY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>The firmware for this initial prototype is quite simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Si4703_Breakout.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Wire.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define CHANNEL_LOW 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define CHANNEL_HIGH 700
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> reset <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> SDIO <span style="color:#f92672">=</span> A4;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> SCLK <span style="color:#f92672">=</span> A5;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Si4703_Breakout <span style="color:#a6e22e">radio</span>(reset, SDIO, SCLK);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> channel;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#ifdef DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">powerOn</span>();
+</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setVolume</span>(<span style="color:#ae81ff">14</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Speed input
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">pinMode</span>(A0, INPUT);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  speed <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(A0) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (speed <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(speed);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  channel<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (channel <span style="color:#f92672">&gt;</span> CHANNEL_HIGH)
+</span></span><span style="display:flex;"><span>    channel <span style="color:#f92672">=</span> CHANNEL_LOW;
+</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setChannel</span>(channel);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">380</span> <span style="color:#f92672">-</span> speed);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note that this firmware is making use of the <a href="https://github.com/sparkfun/SparkFun_Si4703_Arduino_Library/tree/V_1.2.0">Si4703 breakout library</a> from SparkFun to control the FM board.</p>
+<h2 id="wiring">Wiring</h2>
+<p>The pinout is as follows:</p>
+<h4 id="audio-amplifier">Audio Amplifier:</h4>
+<ul>
+<li>Ground &ndash;&gt; Input (-)</li>
+<li>Ground &ndash;&gt; Si4703 Ground</li>
+<li>PWR &ndash;&gt; Si4703 VCC</li>
+<li>Out (+/-) &ndash;&gt; Speaker</li>
+<li>In (+) &ndash;&gt; Si4703 LOUT</li>
+</ul>
+<p><em><strong>NOTE:</strong></em> I also added a pair of 10k resistors to the amplifier to increase the audio gain.</p>
+<h4 id="si4703">Si4703</h4>
+<ul>
+<li>LOUT &ndash;&gt; Amp In(+)</li>
+<li>Ground &ndash;&gt; Arduino GND</li>
+<li>Ground &ndash;&gt; Amp GND</li>
+<li>VCC &ndash;&gt; Amp PWR</li>
+<li>VCC &ndash;&gt; Arduino 5V pin</li>
+<li>SDIO &ndash;&gt; Arduino A4</li>
+<li>SCLK &ndash;&gt; Arduino A5</li>
+<li>RST &ndash;&gt; Arduino D2</li>
+<li>GPIO2 &ndash;&gt; Arduino D3</li>
+</ul>
+<h4 id="arduino-uno">Arduino Uno</h4>
+<ul>
+<li>D2 &ndash;&gt; Si4703 RST</li>
+<li>D3 &ndash;&gt; Si4703 GPIO2</li>
+<li>A4 &ndash;&gt; Si4703 SDIO</li>
+<li>A5 &ndash;&gt; Si4703 SCLK</li>
+<li>3.3V &ndash;&gt; Potentiometer (+)</li>
+<li>GND &ndash;&gt; Potentiometer (-)</li>
+<li>A0 &ndash;&gt; Potentiometer Output</li>
+</ul>
+<h1 id="todo">TODO:</h1>
+<p>This is an ongoing project that still needs quite a bit of work and refinement. Currently on the todo list are:</p>
+<ul>
+<li>Design &amp; 3D print a case to hold the electronics.</li>
+<li>More permanently route the electronics in said case.</li>
+<li>Add a volume control potentiometer to the audio amplifier.</li>
+</ul>
+</article>
+
+        </main><footer id="footer">
+    Copyright  2021, Adam Thompson.
+</footer>
+</body>
+</html>
