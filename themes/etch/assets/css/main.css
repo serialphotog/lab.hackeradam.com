@@ -273,6 +273,16 @@ footer#footer {
     font-weight: 300;
     color: #949494;
     margin: 40px 0;
+    text-align: center;
+}
+
+footer#footer a {
+  color: #007dfa;
+  text-decoration: none;
+}
+
+footer#footer a:hover {
+  text-decoration: underline;
 }
 
 table {
