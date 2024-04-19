@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adam Thompson&#39;s public lab notes.">
+    
+    <link rel="shortcut icon" href="http://localhost:1313/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <title>NMap Reference</title>
+</head>
+<body><header id="banner">
+    <h2><a href="http://localhost:1313/">Adam Thompson&#39;s Lab Notebook</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" title="posts">posts</a>
+            </li><li>
+                <a href="/about" title="about">about</a>
+            </li><li>
+                <a href="https://hackeradam.com" title="Main Site">Main Site</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>NMap Reference</h1>
+            <div>
+                <time>January 27, 2024</time>
+                </div>
+    </header><p>This is my personal quick reference for working with NMap.</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-sV</td>
+<td>Attempts to determine the version of the services that are running</td>
+</tr>
+<tr>
+<td>-p <code>&lt;x&gt;</code> or -p-</td>
+<td>Port scan for port <code>&lt;x&gt;</code> or scan all ports</td>
+</tr>
+<tr>
+<td>-Pn</td>
+<td>Disable host discovery and just scan for open ports</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>Enables OS and version detection, executes in-build scripts for further enumeration. Aggressive Mode.</td>
+</tr>
+<tr>
+<td>-sC</td>
+<td>Scan with the default nmap script</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>Verbose mode</td>
+</tr>
+<tr>
+<td>-sU</td>
+<td>UDP port scan</td>
+</tr>
+<tr>
+<td>-sS</td>
+<td>TCP SYN port scan</td>
+</tr>
+<tr>
+<td>-Pn</td>
+<td>Disable the ping scan</td>
+</tr>
+<tr>
+<td>-T5</td>
+<td>Sets to time template level 5.</td>
+</tr>
+<tr>
+<td>&ndash;script</td>
+<td>Run with a script.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<p>Perform a verbose scan, attempt to identify the version of services that are running, enable OS and version detection with in-build scripts for further enumeration, and scan with the default NMap script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -v -sV -A -sC 10.10.58.39
+</span></span></code></pre></div><h1 id="scripts">Scripts</h1>
+<p>A list of the built-in scripts can be found <a href="https://nmap.org/nsedoc/scripts/">here</a>.</p>
+<p><strong>NOTE:</strong> NMap stores its scripts in <code>/usr/share/nmap/scripts</code>.</p>
+<h1 id="firewall-evasion-techniques">Firewall Evasion Techniques</h1>
+<table>
+<thead>
+<tr>
+<th>flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f</td>
+<td>Fragment packets to make them harder for a firewall/IDS to detect.</td>
+</tr>
+<tr>
+<td>&ndash;scan-delay <code>&lt;time&gt;</code>ms</td>
+<td>Adds a delay between each sent packet</td>
+</tr>
+<tr>
+<td>&ndash;badsum</td>
+<td>Generates an invalid checksum for packets. Real TCP/IP stacks should drop this packet, however firewalls may respond automatically. As such, this can detect the presence of a firewall/IDS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> More firewall evasion techniques can be found <a href="https://nmap.org/book/man-bypass-firewalls-ids.html">here</a>.</p>
+</article>
+
+        </main><footer id="footer">
+    Copyright &copy; 2024, <a href="https://hackeradam.com" target="_blank">Adam Thompson</a>. All rights reserved.
+</footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adam Thompson&#39;s public lab notes.">
+    
+    <link rel="shortcut icon" href="http://localhost:1313/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <title>How To Delete a Git Submodule</title>
+</head>
+<body><header id="banner">
+    <h2><a href="http://localhost:1313/">Adam Thompson&#39;s Lab Notebook</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" title="posts">posts</a>
+            </li><li>
+                <a href="/about" title="about">about</a>
+            </li><li>
+                <a href="https://hackeradam.com" title="Main Site">Main Site</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>How To Delete a Git Submodule</h1>
+            <div>
+                <time>November 10, 2023</time>
+                </div>
+    </header><p>To delete a submodule from git, do the following:</p>
+<ol>
+<li>Delete the relevant section from the <code>.gitmodules</code> file.</li>
+<li>Delete the relevant section from the <code>.git/config</code> file.</li>
+<li>Run <code>git rm --cached &lt;path_to_submodule&gt;</code>.</li>
+<li>Run <code>git rm --cached &lt;path_to_submodule&gt;</code>.</li>
+<li>Run <code>rm -rf .git/modules/&lt;path_to_submodule&gt;</code>.</li>
+<li>Commit the changes.</li>
+</ol>
+</article>
+
+        </main><footer id="footer">
+    Copyright &copy; 2024, <a href="https://hackeradam.com" target="_blank">Adam Thompson</a>. All rights reserved.
+</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adam Thompson&#39;s public lab notes.">
+    
+    <link rel="shortcut icon" href="http://localhost:1313/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <title>Handy CTF Commands</title>
+</head>
+<body><header id="banner">
+    <h2><a href="http://localhost:1313/">Adam Thompson&#39;s Lab Notebook</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" title="posts">posts</a>
+            </li><li>
+                <a href="/about" title="about">about</a>
+            </li><li>
+                <a href="https://hackeradam.com" title="Main Site">Main Site</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Handy CTF Commands</h1>
+            <div>
+                <time>January 28, 2024</time>
+                </div>
+    </header><p>This is a collection of commands that I find useful when playing CTFs.</p>
+<h1 id="linux">Linux</h1>
+<h2 id="stabilize-a-reverse-shell">Stabilize a Reverse Shell</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span></code></pre></div><h2 id="finding-all-suid-binaries-on-a-system">Finding all SUID Binaries on a System</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -user root -perm -4000 -exec ls -ldb <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
+</span></span></code></pre></div><h2 id="transfer-files-with-netcat">Transfer Files with Netcat</h2>
+<p>On the receiving end:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lp <span style="color:#ae81ff">4444</span> &gt; out.file
+</span></span></code></pre></div><p>On the sending end:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -w <span style="color:#ae81ff">3</span> <span style="color:#f92672">[</span>destination IP<span style="color:#f92672">]</span> <span style="color:#ae81ff">4444</span> &lt; out.file
+</span></span></code></pre></div><h1 id="windows">Windows</h1>
+<h2 id="check-the-current-user-privileges">Check the Current User Privileges</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>whoami /privs
+</span></span></code></pre></div></article>
+
+        </main><footer id="footer">
+    Copyright &copy; 2024, <a href="https://hackeradam.com" target="_blank">Adam Thompson</a>. All rights reserved.
+</footer>
+</body>
+</html>

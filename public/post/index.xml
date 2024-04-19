@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Adam Thompson&#39;s Lab Notebook</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Adam Thompson&#39;s Lab Notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>My VIM Cheatsheet</title>
+      <link>http://localhost:1313/post/vim-cheatsheet/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/vim-cheatsheet/</guid>
+      <description>This is my ongoing Vim quick reference. Note that this is in no way meant to be an exhaustive cheatsheet for Vim. This is more a list of things I&amp;rsquo;m personally constantly forgetting how to do.
+Searching, Pattern Matching, and Replacing Searching for a Pattern :/pattern Find and Replace :%s/searchtext/replacetext/g Note: Leave off the /g to only replace the first match on each line.
+Limit the Range of Affected Lines :N,Ms/searchtext/replacetext/g Where N is the first line and M is the last line.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Handy CTF Commands</title>
+      <link>http://localhost:1313/post/handy-ctf-commands/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/handy-ctf-commands/</guid>
+      <description>This is a collection of commands that I find useful when playing CTFs.
+Linux Stabilize a Reverse Shell python -c &amp;#39;import pty; pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39; Finding all SUID Binaries on a System find / -user root -perm -4000 -exec ls -ldb {} \; Transfer Files with Netcat On the receiving end:
+nc -lp 4444 &amp;gt; out.file On the sending end:
+nc -w 3 [destination IP] 4444 &amp;lt; out.file Windows Check the Current User Privileges whoami /privs </description>
+    </item>
+    
+    
+    
+    <item>
+      <title>NMap Reference</title>
+      <link>http://localhost:1313/post/nmap-reference/</link>
+      <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/nmap-reference/</guid>
+      <description>This is my personal quick reference for working with NMap.
+Flag Description -sV Attempts to determine the version of the services that are running -p &amp;lt;x&amp;gt; or -p- Port scan for port &amp;lt;x&amp;gt; or scan all ports -Pn Disable host discovery and just scan for open ports -A Enables OS and version detection, executes in-build scripts for further enumeration. Aggressive Mode. -sC Scan with the default nmap script -v Verbose mode -sU UDP port scan -sS TCP SYN port scan -Pn Disable the ping scan -T5 Sets to time template level 5.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>How To Delete a Git Submodule</title>
+      <link>http://localhost:1313/post/delete-git-submodule/</link>
+      <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/delete-git-submodule/</guid>
+      <description>To delete a submodule from git, do the following:
+Delete the relevant section from the .gitmodules file. Delete the relevant section from the .git/config file. Run git rm --cached &amp;lt;path_to_submodule&amp;gt;. Run git rm --cached &amp;lt;path_to_submodule&amp;gt;. Run rm -rf .git/modules/&amp;lt;path_to_submodule&amp;gt;. Commit the changes. </description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Building Serenity OS on Windows with WSL 2</title>
+      <link>http://localhost:1313/post/building-serenity-os-wsl/</link>
+      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/building-serenity-os-wsl/</guid>
+      <description>I&amp;rsquo;ve been following the development of Serenity OS with a fair bit of interest for the past few months. As such, I&amp;rsquo;ve been itching to try building the system and playing around with it. I finally got a bit of time and decided that, for a bit of an extra challenge, I&amp;rsquo;d attempt to get it running through WSL 2 on Windows 10.
+This is something that is actually officially documented in the GitHub repository, but I ran into a few roadblocks along the way.</description>
+    </item>
+    
+    
+    
+    
+  </channel>
+</rss>
