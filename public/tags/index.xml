@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>My VIM Cheatsheet</title>
+      <link>http://localhost:1313/post/vim-cheatsheet/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/vim-cheatsheet/</guid>
+      <description>This is my ongoing Vim quick reference. Note that this is in no way meant to be an exhaustive cheatsheet for Vim. This is more a list of things I&amp;rsquo;m personally constantly forgetting how to do.
+Searching, Pattern Matching, and Replacing Searching for a Pattern :/pattern Find and Replace :%s/searchtext/replacetext/g Note: Leave off the /g to only replace the first match on each line.
+Limit the Range of Affected Lines :N,Ms/searchtext/replacetext/g Where N is the first line and M is the last line.</description>
+    </item>
+    
+    
+    
+    <item>
       <title>Handy CTF Commands</title>
       <link>http://localhost:1313/post/handy-ctf-commands/</link>
       <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
